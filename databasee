@@ -1,9 +1,45 @@
 about
+title
+description
 
 
--id
--name
+news
+image
+title
+description
+date
 
+
+announcement(pemberitahuan)
+image
+title
+description
+date
+
+
+informasi hotel
+nama
+place
+
+
+informasi tempat wisata
+nama
+name_place
+
+
+halte
+name_place
+latitude
+longitude
+
+
+stasiun
+name_place
+latitude
+longitude
+
+
+submission(aduan)
 
 
 

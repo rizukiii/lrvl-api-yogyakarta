@@ -1,22 +1,12 @@
 @push('script')
-<!-- plugins:js -->
-<script src="{{ asset('corona') }}/template/assets/vendors/js/vendor.bundle.base.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="{{ asset('corona') }}/template/assets/vendors/chart.js/Chart.min.js"></script>
-<script src="{{ asset('corona') }}/template/assets/vendors/progressbar.js/progressbar.min.js"></script>
-<script src="{{ asset('corona') }}/template/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-<script src="{{ asset('corona') }}/template/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<script src="{{ asset('corona') }}/template/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="{{ asset('corona') }}/template/assets/js/off-canvas.js"></script>
-<script src="{{ asset('corona') }}/template/assets/js/hoverable-collapse.js"></script>
-<script src="{{ asset('corona') }}/template/assets/js/misc.js"></script>
-<script src="{{ asset('corona') }}/template/assets/js/settings.js"></script>
-<script src="{{ asset('corona') }}/template/assets/js/todolist.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
-<script src="{{ asset('corona') }}/template/assets/js/dashboard.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('start') }}/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('start') }}/assets/demo/chart-area-demo.js"></script>
+    <script src="{{ asset('start') }}/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{{ asset('start') }}/js/datatables-simple-demo.js"></script>
 @endpush
+
