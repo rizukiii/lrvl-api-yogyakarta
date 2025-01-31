@@ -48,9 +48,9 @@ class NewsController extends Controller
 
             $news->save();
 
-            return redirect()->route('news.index')->with('success', 'News created successfully.');
+            return redirect()->route('news.index')->with('success', 'Berita berhasil dibuat.');
         } catch (\Exception $e) {
-            return redirect()->route('news.create')->with('error', 'Failed to create news. ' . $e->getMessage());
+            return redirect()->route('news.create')->with('error', 'Gagal membuat berita. ' . $e->getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ class NewsController extends Controller
             $news = News::findOrFail($id);
             return view('backend.news.show', compact('news'));
         } catch (\Exception $e) {
-            return redirect()->route('news.index')->with('error', 'News not found.');
+            return redirect()->route('news.index')->with('error', 'Berita tidak ditemukan.');
         }
     }
 
@@ -76,7 +76,7 @@ class NewsController extends Controller
             $news = News::findOrFail($id);
             return view('backend.news.edit', compact('news'));
         } catch (\Exception $e) {
-            return redirect()->route('news.index')->with('error', 'News not found.');
+            return redirect()->route('news.index')->with('error', 'Berita tidak ditemukan. ' . $e->getMessage());
         }
     }
 
@@ -105,9 +105,9 @@ class NewsController extends Controller
 
             $news->save();
 
-            return redirect()->route('news.index')->with('success', 'News updated successfully.');
+            return redirect()->route('news.index')->with('success', 'Data Berita berhasil diperbarui.');
         } catch (\Exception $e) {
-            return redirect()->route('news.edit', $id)->with('error', 'Failed to update news.');
+            return redirect()->route('news.edit', $id)->with('error', 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage());
         }
     }
 
@@ -125,9 +125,9 @@ class NewsController extends Controller
 
             $news->delete();
 
-            return redirect()->route('news.index')->with('success', 'News successfully deleted.');
+            return redirect()->route('news.index')->with('success', 'Data Berita berhasil dihapus.');
         } catch (\Exception $e) {
-            return redirect()->route('news.index')->with('error', 'Failed to delete news.');
+            return redirect()->route('news.index')->with('error', 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage());
         }
     }
 }

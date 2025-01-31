@@ -7,6 +7,7 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Berita</li>
             </ol>
+            @include('backend.partials.alert')
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
@@ -15,8 +16,6 @@
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>
-                @include('backend.partials.alert')
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>

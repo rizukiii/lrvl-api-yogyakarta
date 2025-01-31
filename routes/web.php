@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('backend.dashboard.index');
 });
+
+Route::get('about/index',[AboutController::class,'index'])->name('about.index');
+Route::get('about/edit/{id}',[AboutController::class,'edit'])->name('about.edit');
+Route::put('about/update/{id}',[AboutController::class,'update'])->name('about.update');
+
 
 Route::get('news/index',[NewsController::class,'index'])->name('news.index');
 Route::get('news/create',[NewsController::class,'create'])->name('news.create');

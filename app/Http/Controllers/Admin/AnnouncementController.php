@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Storage;
 class AnnouncementController extends Controller
 {
     /**
-     * Menampilkan daftar berita.
+     * Menampilkan daftar pengumuman.
      */
     public function index()
     {
-        $announcement = Announcement::latest()->get(); // Urutkan dari berita terbaru
+        $announcement = Announcement::latest()->get(); // Urutkan dari pengumuman terbaru
         return view('backend.announcement.index', compact('announcement'));
     }
 
     /**
-     * Menampilkan form tambah berita.
+     * Menampilkan form tambah pengumuman.
      */
     public function create()
     {
@@ -27,7 +27,7 @@ class AnnouncementController extends Controller
     }
 
     /**
-     * Menyimpan berita baru ke database.
+     * Menyimpan pengumuman baru ke database.
      */
     public function store(Request $request)
     {
@@ -48,14 +48,14 @@ class AnnouncementController extends Controller
 
             $announcement->save();
 
-            return redirect()->route('announcement.index')->with('success', 'Announcement created successfully.');
+            return redirect()->route('announcement.index')->with('success', 'Pengumuman berhasil ditambahkan.');
         } catch (\Exception $e) {
-            return redirect()->route('announcement.create')->with('error', 'Failed to create announcement. ' . $e->getMessage());
+            return redirect()->route('announcement.create')->with('error', 'Terjadi kesalahan saat menambahkan pengumuman: ' . $e->getMessage());
         }
     }
 
     /**
-     * Menampilkan berita berdasarkan ID.
+     * Menampilkan pengumuman berdasarkan ID.
      */
     public function show($id)
     {
@@ -63,12 +63,12 @@ class AnnouncementController extends Controller
             $announcement = Announcement::findOrFail($id);
             return view('backend.announcement.show', compact('announcement'));
         } catch (\Exception $e) {
-            return redirect()->route('announcement.index')->with('error', 'Announcement not found.');
+            return redirect()->route('announcement.index')->with('error', 'Pengumuman tidak ditemukan.');
         }
     }
 
     /**
-     * Menampilkan form edit berita.
+     * Menampilkan form edit pengumuman.
      */
     public function edit($id)
     {
@@ -76,12 +76,12 @@ class AnnouncementController extends Controller
             $announcement = Announcement::findOrFail($id);
             return view('backend.announcement.edit', compact('announcement'));
         } catch (\Exception $e) {
-            return redirect()->route('announcement.index')->with('error', 'Announcement not found.');
+            return redirect()->route('announcement.index')->with('error', 'Pengumuman tidak ditemukan.');
         }
     }
 
     /**
-     * Memperbarui berita.
+     * Memperbarui pengumuman.
      */
     public function update(Request $request, $id)
     {
@@ -105,14 +105,14 @@ class AnnouncementController extends Controller
 
             $announcement->save();
 
-            return redirect()->route('announcement.index')->with('success', 'Announcement updated successfully.');
+            return redirect()->route('announcement.index')->with('success', 'Pengumuman berhasil diperbarui.');
         } catch (\Exception $e) {
-            return redirect()->route('announcement.edit', $id)->with('error', 'Failed to update announcement.');
+            return redirect()->route('announcement.edit', $id)->with('error', 'Terjadi kesalahan saat memperbarui pengumuman: ' . $e->getMessage());
         }
     }
 
     /**
-     * Menghapus berita.
+     * Menghapus pengumuman.
      */
     public function destroy($id)
     {
@@ -125,9 +125,9 @@ class AnnouncementController extends Controller
 
             $announcement->delete();
 
-            return redirect()->route('announcement.index')->with('success', 'Announcement successfully deleted.');
+            return redirect()->route('announcement.index')->with('success', 'Pengumuman berhasil dihapus.');
         } catch (\Exception $e) {
-            return redirect()->route('announcement.index')->with('error', 'Failed to delete announcement.');
+            return redirect()->route('announcement.index')->with('error', 'Terjadi kesalahan saat menghapus pengumuman: ' . $e->getMessage());
         }
     }
 }

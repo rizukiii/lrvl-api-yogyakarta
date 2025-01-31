@@ -8,6 +8,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('announcement.index') }}">Pengumuman</a></li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
+            @include('backend.partials.alert')
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-edit me-1"></i>

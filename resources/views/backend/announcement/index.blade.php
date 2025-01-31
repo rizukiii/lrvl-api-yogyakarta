@@ -7,6 +7,7 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Pengumuman</li>
             </ol>
+            @include('backend.partials.alert')
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
@@ -15,7 +16,6 @@
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>
-                @include('backend.partials.alert')
 
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -64,8 +64,8 @@
                                                 <li><a class="dropdown-item"
                                                         href="{{ route('announcement.edit', $item->id) }}">Edit</a></li>
                                                 <li>
-                                                    <form action="{{ route('announcement.destroy', $item->id) }}" method="POST"
-                                                        onsubmit="return confirm('Apakah Anda yakin?');">
+                                                    <form action="{{ route('announcement.destroy', $item->id) }}"
+                                                        method="POST" onsubmit="return confirm('Apakah Anda yakin?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="dropdown-item text-danger"
@@ -78,7 +78,8 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" rowspan="10" class="text-center text-danger">Tidak ada data tersedia.</td>
+                                    <td colspan="10" rowspan="10" class="text-center text-danger">Tidak ada data
+                                        tersedia.</td>
                                 </tr>
                             @endforelse
                         </tbody>
