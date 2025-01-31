@@ -11,7 +11,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Berita
                 </a>
-                <a class="nav-link" href="{{ route('news.index') }}">
+                <a class="nav-link" href="{{ route('announcement.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Pengumuman
                 </a>
