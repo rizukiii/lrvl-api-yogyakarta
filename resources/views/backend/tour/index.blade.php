@@ -1,18 +1,18 @@
 @extends('layouts.start')
-@section('title', 'Pengumuman')
+@section('title', 'Wisata')
 @section('content')
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Dashboard</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Pengumuman</li>
+                <li class="breadcrumb-item active">Wisata</li>
             </ol>
             @include('backend.partials.alert')
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data
-                    <a href="{{ route('announcement.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('tour.create') }}" class="btn btn-primary btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>
@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($announcement as $item)
+                            @foreach ($tours as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
@@ -50,11 +50,11 @@
                                             <ul class="dropdown-menu"
                                                 aria-labelledby="dropdownMenuButton{{ $item->id }}">
                                                 <li><a class="dropdown-item"
-                                                        href="{{ route('announcement.show', $item->id) }}">Lihat</a></li>
+                                                        href="{{ route('tour.show', $item->id) }}">Lihat</a></li>
                                                 <li><a class="dropdown-item"
-                                                        href="{{ route('announcement.edit', $item->id) }}">Edit</a></li>
+                                                        href="{{ route('tour.edit', $item->id) }}">Edit</a></li>
                                                 <li>
-                                                    <form action="{{ route('announcement.destroy', $item->id) }}"
+                                                    <form action="{{ route('tour.destroy', $item->id) }}"
                                                         method="POST" onsubmit="return confirm('Apakah Anda yakin?');">
                                                         @csrf
                                                         @method('DELETE')

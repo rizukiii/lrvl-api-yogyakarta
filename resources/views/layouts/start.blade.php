@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
     @include('backend.partials.head')
     @stack('head')
-</head>
+
 
 <body class="sb-nav-fixed">
     @include('backend.partials.navbar')

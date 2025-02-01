@@ -24,22 +24,12 @@
                                 <th>Gambar</th>
                                 <th>Judul</th>
                                 <th>Deskripsi</th>
-                                <th>Tanggal</th>
+                                <th>Ditambahkan pada</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Gambar</th>
-                                <th>Judul</th>
-                                <th>Deskripsi</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
-                            @forelse ($news as $item)
+                            @foreach ($news as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
@@ -75,11 +65,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="10" class="text-center text-danger">Tidak ada data tersedia.</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
