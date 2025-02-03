@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AccommodationController;
+use App\Http\Controllers\Admin\AirportController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\CulinaryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\StationController;
+use App\Http\Controllers\Admin\TerminalController;
 use App\Http\Controllers\Admin\TourController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,5 +69,29 @@ Route::get('culinary/show/{id}',[CulinaryController::class,'show'])->name('culin
 Route::get('culinary/edit/{id}',[CulinaryController::class,'edit'])->name('culinary.edit');
 Route::put('culinary/update/{id}',[CulinaryController::class,'update'])->name('culinary.update');
 Route::delete('culinary/destroy/{id}',[CulinaryController::class,'destroy'])->name('culinary.destroy');
+
+Route::get('terminal/index',[TerminalController::class,'index'])->name('terminal.index');
+Route::get('terminal/create',[TerminalController::class,'create'])->name('terminal.create');
+Route::post('terminal/store',[TerminalController::class,'store'])->name('terminal.store');
+Route::get('terminal/show/{id}',[TerminalController::class,'show'])->name('terminal.show');
+Route::get('terminal/edit/{id}',[TerminalController::class,'edit'])->name('terminal.edit');
+Route::put('terminal/update/{id}',[TerminalController::class,'update'])->name('terminal.update');
+Route::delete('terminal/destroy/{id}',[TerminalController::class,'destroy'])->name('terminal.destroy');
+
+Route::get('station/index',[StationController::class,'index'])->name('station.index');
+Route::get('station/create',[StationController::class,'create'])->name('station.create');
+Route::post('station/store',[StationController::class,'store'])->name('station.store');
+Route::get('station/show/{id}',[StationController::class,'show'])->name('station.show');
+Route::get('station/edit/{id}',[StationController::class,'edit'])->name('station.edit');
+Route::put('station/update/{id}',[StationController::class,'update'])->name('station.update');
+Route::delete('station/destroy/{id}',[StationController::class,'destroy'])->name('station.destroy');
+
+Route::get('airport/index',[AirportController::class,'index'])->name('airport.index');
+Route::get('airport/create',[AirportController::class,'create'])->name('airport.create');
+Route::post('airport/store',[AirportController::class,'store'])->name('airport.store');
+Route::get('airport/show/{id}',[AirportController::class,'show'])->name('airport.show');
+Route::get('airport/edit/{id}',[AirportController::class,'edit'])->name('airport.edit');
+Route::put('airport/update/{id}',[AirportController::class,'update'])->name('airport.update');
+Route::delete('airport/destroy/{id}',[AirportController::class,'destroy'])->name('airport.destroy');
 
 

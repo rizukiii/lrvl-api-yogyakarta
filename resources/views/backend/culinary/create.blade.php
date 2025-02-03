@@ -30,10 +30,12 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Gambar</label>
-                            <input type="file" name="image" id="image" class="form-control" accept="image/*" required onchange="previewImage(event)">
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*"
+                                required onchange="previewImage(event)">
                             <div class="mt-3">
                                 <p>Pratinjau Gambar:</p>
-                                <img id="preview-image" src="#" alt="Pratinjau Gambar" class="img-fluid d-none" style="max-width: 150px;">
+                                <img id="preview-image" src="#" alt="Pratinjau Gambar" class="img-fluid d-none"
+                                    style="max-width: 150px;">
                             </div>
                         </div>
 

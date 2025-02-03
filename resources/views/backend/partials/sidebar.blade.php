@@ -7,30 +7,53 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="{{ route('about.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Tentang Kami
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInformasi" aria-expanded="false" aria-controls="collapseInformasi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Informasi
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link" href="{{ route('news.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Berita
+                <div class="collapse" id="collapseInformasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('news.index') }}">Berita</a>
+                        <a class="nav-link" href="{{ route('announcement.index') }}">Pengumuman</a>
+                        <a class="nav-link" href="{{ route('about.index') }}">Tentang Kami</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLokasi" aria-expanded="false" aria-controls="collapseLokasi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Lokasi
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link" href="{{ route('announcement.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Pengumuman
+                <div class="collapse" id="collapseLokasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('accommodation.index') }}">Akomodasi</a>
+                        <a class="nav-link" href="{{ route('tour.index') }}">Wisata</a>
+                        <a class="nav-link" href="{{ route('culinary.index') }}">Kuliner</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTransportasi" aria-expanded="false" aria-controls="collapseTransportasi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Transportasi
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link" href="{{ route('accommodation.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Akomodasi
+                <div class="collapse" id="collapseTransportasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('terminal.index') }}">Terminal</a>
+                        <a class="nav-link" href="{{ route('station.index') }}">Stasiun</a>
+                        <a class="nav-link" href="{{ route('airport.index') }}">Bandara</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePelayanan" aria-expanded="false" aria-controls="collapsePelayanan">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Pelayanan
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link" href="{{ route('tour.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Wisata
-                </a>
-                <a class="nav-link" href="{{ route('culinary.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Kuliner
-                </a>
+                <div class="collapse" id="collapsePelayanan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('accommodation.index') }}">Aduan</a>
+                        <a class="nav-link" href="{{ route('tour.index') }}">Forum</a>
+                    </nav>
+                </div>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

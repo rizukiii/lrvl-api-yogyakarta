@@ -34,21 +34,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Gambar</label>
-                            <input type="file" name="image" id="image" class="form-control" accept="image/*"
-                                onchange="previewImage(event)">
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="previewImage(event)">
                             <small class="text-muted">Biarkan kosong jika tidak mengganti gambar</small>
+
                             <div class="mt-2 d-flex gap-3">
                                 <!-- Gambar Lama -->
                                 <div>
                                     <p>Gambar Saat Ini:</p>
-                                    <img src="{{ Storage::url($news->image) }}" alt="gambar berita" class="img-fluid"
-                                        style="max-width: 150px;">
+                                    <img src="{{ Storage::url($news->image) }}" alt="gambar akomodasi" class="img-fluid" style="max-width: 150px;">
                                 </div>
                                 <!-- Pratinjau Gambar Baru -->
                                 <div>
                                     <p>Pratinjau Gambar Baru:</p>
-                                    <img id="preview-image" src="#" alt="Pratinjau Gambar" class="img-fluid d-none"
-                                        style="max-width: 150px;">
+                                    <img id="preview-image" src="#" alt="Pratinjau Gambar" class="img-fluid d-none" style="max-width: 150px;">
                                 </div>
                             </div>
                         </div>

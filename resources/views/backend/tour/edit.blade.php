@@ -34,9 +34,19 @@
                     <div class="mb-3">
                         <label for="image" class="form-label">Gambar</label>
                         <input type="file" name="image" id="image" class="form-control" accept="image/*" onchange="previewImage(event)">
-                        <div class="mt-3">
-                            <p>Pratinjau Gambar:</p>
-                            <img id="preview-image" src="{{ Storage::url($tour->image) }}" alt="Pratinjau Gambar" class="img-fluid" style="max-width: 150px;">
+                        <small class="text-muted">Biarkan kosong jika tidak mengganti gambar</small>
+
+                        <div class="mt-2 d-flex gap-3">
+                            <!-- Gambar Lama -->
+                            <div>
+                                <p>Gambar Saat Ini:</p>
+                                <img src="{{ Storage::url($tour->image) }}" alt="gambar akomodasi" class="img-fluid" style="max-width: 150px;">
+                            </div>
+                            <!-- Pratinjau Gambar Baru -->
+                            <div>
+                                <p>Pratinjau Gambar Baru:</p>
+                                <img id="preview-image" src="#" alt="Pratinjau Gambar" class="img-fluid d-none" style="max-width: 150px;">
+                            </div>
                         </div>
                     </div>
 
