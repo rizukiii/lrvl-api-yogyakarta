@@ -94,7 +94,7 @@
                             <input type="number" name="longitude" id="longitude" class="form-control" step="any" value="{{ old('longitude', $culinary->longitude) }}" placeholder="Masukkan Longitude" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-danger">Simpan</button>
                         <a href="{{ route('culinary.index') }}" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>

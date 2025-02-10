@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Perbarui</button>
+                        <button type="submit" class="btn btn-danger">Perbarui</button>
                         <a href="{{ route('news.index') }}" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>

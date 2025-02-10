@@ -12,12 +12,12 @@
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data
-                    <a href="{{ route('news.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('news.create') }}" class="btn btn-danger btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="datatablesSimple" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>

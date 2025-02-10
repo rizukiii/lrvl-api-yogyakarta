@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AccommodationController;
 use App\Http\Controllers\Admin\AirportController;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CulinaryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StationController;
 use App\Http\Controllers\Admin\TerminalController;
 use App\Http\Controllers\Admin\TourController;
@@ -25,6 +27,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('backend.dashboard.index');
 });
+
+Route::get('/login',[AuthController::class, 'login'])->name('login');
+Route::get('/authenticate',[AuthController::class, 'authenticate'])->name('authenticate');
+Route::get('/register',[AuthController::class, 'register'])->name('register');
+
 
 Route::get('about/index',[AboutController::class,'index'])->name('about.index');
 Route::get('about/edit/{id}',[AboutController::class,'edit'])->name('about.edit');
@@ -95,3 +102,8 @@ Route::put('airport/update/{id}',[AirportController::class,'update'])->name('air
 Route::delete('airport/destroy/{id}',[AirportController::class,'destroy'])->name('airport.destroy');
 
 
+Route::get('/report/index', [ReportController::class, 'index'])->name('report.index');
+Route::get('/report/show/{id}', [ReportController::class, 'show'])->name('report.show');
+Route::get('/report/edit/{id}', [ReportController::class, 'edit'])->name('report.edit');
+Route::patch('/report/update/{id}', [ReportController::class, 'updateStatus'])->name('report.update-status');
+Route::delete('/report/destroy/{id}', [ReportController::class, 'destroy'])->name('report.destroy');

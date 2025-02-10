@@ -101,7 +101,7 @@
                                 value="{{ old('longitude', $station->longitude) }}" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-danger">Simpan Perubahan</button>
                         <a href="{{ route('station.index') }}" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>

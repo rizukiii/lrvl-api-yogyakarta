@@ -83,7 +83,7 @@
                                 placeholder="Masukkan Longitude" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Kirim</button>
+                        <button type="submit" class="btn btn-danger">Kirim</button>
                         <a href="{{ route('accommodation.index') }}" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>

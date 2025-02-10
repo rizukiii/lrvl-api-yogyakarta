@@ -13,7 +13,7 @@
         @include('backend.partials.alert')
 
         <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-danger text-white">
                 <i class="fas fa-info-circle me-1"></i>
                 Detail Wisata
             </div>
@@ -26,7 +26,7 @@
 
                     <!-- Information Section -->
                     <div class="col-md-6 col-lg-8">
-                        <h3 class="text-primary">{{ $tour->title }}</h3>
+                        <h3 class="text-danger">{{ $tour->title }}</h3>
                         <p><strong>Deskripsi:</strong></p>
                         <p>{{ $tour->description }}</p>
 

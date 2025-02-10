@@ -33,7 +33,7 @@
 
                     <!-- Info Section -->
                     <div class="col-md-6 col-lg-8">
-                        <h3 class="text-primary">{{ $station->name }}</h3>
+                        <h3 class="text-danger">{{ $station->name }}</h3>
 
                         <div class="mb-3">
                             <label class="form-label"><strong>Alamat</strong></label>

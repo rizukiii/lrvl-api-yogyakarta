@@ -13,7 +13,7 @@
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data Terminal
-                    <a href="{{ route('terminal.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('terminal.create') }}" class="btn btn-danger btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah Terminal
                     </a>
                 </div>
@@ -42,7 +42,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>
-                                        <span class="badge 
+                                        <span class="badge
                                             @if($item->status == 'aktif') badge-success
                                             @elseif($item->status == 'dalam perbaikan') badge-warning
                                             @else badge-danger

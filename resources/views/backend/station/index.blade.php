@@ -13,12 +13,12 @@
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data Stasiun
-                    <a href="{{ route('station.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('station.create') }}" class="btn btn-danger btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah Stasiun
                     </a>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body ">
                     <table id="datatablesSimple">
                         <thead>
                             <tr>

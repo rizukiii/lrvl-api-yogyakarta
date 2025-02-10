@@ -91,7 +91,7 @@
                             <input type="text" name="longitude" id="longitude" class="form-control" value="{{ old('longitude', $accommodation->longitude) }}" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-danger">Simpan Perubahan</button>
                         <a href="{{ route('accommodation.index') }}" class="btn btn-secondary">Batal</a>
                     </form>
                 </div>

@@ -33,7 +33,7 @@
 
                     <!-- Info Section -->
                     <div class="col-md-6 col-lg-8">
-                        <h3 class="text-primary">{{ $culinary->title }}</h3>
+                        <h3 class="text-danger">{{ $culinary->title }}</h3>
 
                         <div class="mb-3">
                             <label class="form-label"><strong>Deskripsi</strong></label>

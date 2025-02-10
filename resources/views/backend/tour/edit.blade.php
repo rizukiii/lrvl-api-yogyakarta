@@ -95,7 +95,7 @@
                         <input type="number" name="longitude" id="longitude" class="form-control" value="{{ old('longitude', $tour->longitude) }}" step="any" placeholder="Masukkan Longitude" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Perbarui Wisata</button>
+                    <button type="submit" class="btn btn-danger">Perbarui Wisata</button>
                     <a href="{{ route('tour.index') }}" class="btn btn-secondary">Batal</a>
                 </form>
             </div>

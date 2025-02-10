@@ -12,7 +12,7 @@
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data
-                    <a href="{{ route('announcement.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('announcement.create') }}" class="btn btn-danger btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>

@@ -50,8 +50,7 @@
                 </a>
                 <div class="collapse" id="collapsePelayanan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('accommodation.index') }}">Aduan</a>
-                        <a class="nav-link" href="{{ route('tour.index') }}">Forum</a>
+                        <a class="nav-link" href="{{ route('report.index') }}">Laporan</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Interface</div>

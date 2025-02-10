@@ -12,13 +12,13 @@
                 <div class="card-header d-flex align-items-center">
                     <i class="fas fa-table me-1"></i>
                     Tabel Data
-                    <a href="{{ route('culinary.create') }}" class="btn btn-primary btn-sm ms-auto">
+                    <a href="{{ route('culinary.create') }}" class="btn btn-danger btn-sm ms-auto">
                         <i class="fas fa-plus"></i> Tambah
                     </a>
                 </div>
 
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="datatablesSimple" class="maroon">
                         <thead>
                             <tr>
                                 <th>No</th>

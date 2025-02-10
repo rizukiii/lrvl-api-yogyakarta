@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,12 +27,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('register', RegisterController::class)->name('register');
-Route::post('/login', LoginController::class)->name('login');
+Route::post('register', RegisterController::class);
+Route::post('/login', LoginController::class);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('logout',LogoutController::class)->name('logout');
+Route::post('logout',LogoutController::class);
 
 Route::get('about/fetchAll',[AboutController::class, 'fetchAll']);
 
