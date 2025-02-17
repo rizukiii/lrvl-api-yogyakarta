@@ -53,7 +53,7 @@ class TourController extends Controller
 
         try {
             // Menyimpan gambar yang di-upload
-            $imagePath = $request->file('image')->store('public/tours');
+            $imagePath = $request->file('image')->store('tour','public');
             $validatedData['image'] = $imagePath;
 
             // Menyimpan data tour baru
@@ -121,7 +121,7 @@ class TourController extends Controller
                     Storage::delete($tour->image);
                 }
                 // Menyimpan gambar baru
-                $imagePath = $request->file('image')->store('public/tours');
+                $imagePath = $request->file('image')->store('tour','public');
                 $validatedData['image'] = $imagePath;
             }
 

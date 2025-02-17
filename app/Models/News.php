@@ -14,6 +14,7 @@ class News extends Model
         'image',
         'title',
         'description',
+        'author',
     ];
 
     public function casts()

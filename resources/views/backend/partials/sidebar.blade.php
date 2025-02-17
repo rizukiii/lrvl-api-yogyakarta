@@ -7,53 +7,63 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInformasi" aria-expanded="false" aria-controls="collapseInformasi">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#collapseInformasi" aria-expanded="false" aria-controls="collapseInformasi">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Informasi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseInformasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseInformasi" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('news.index') }}">Berita</a>
                         <a class="nav-link" href="{{ route('announcement.index') }}">Pengumuman</a>
+                        <a class="nav-link" href="{{ route('tips_trick.index') }}">Tips & Trik</a>
+                        <a class="nav-link" href="{{ route('emergency.index') }}">Nomor Darurat</a>
                         <a class="nav-link" href="{{ route('about.index') }}">Tentang Kami</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLokasi" aria-expanded="false" aria-controls="collapseLokasi">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLokasi"
+                    aria-expanded="false" aria-controls="collapseLokasi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-location-dot"></i></div>
                     Lokasi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLokasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseLokasi" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('accommodation.index') }}">Akomodasi</a>
                         <a class="nav-link" href="{{ route('tour.index') }}">Wisata</a>
                         <a class="nav-link" href="{{ route('culinary.index') }}">Kuliner</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTransportasi" aria-expanded="false" aria-controls="collapseTransportasi">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTransportasi" aria-expanded="false" aria-controls="collapseTransportasi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-van-shuttle"></i></div>
                     Transportasi
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseTransportasi" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseTransportasi" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('terminal.index') }}">Terminal</a>
                         <a class="nav-link" href="{{ route('station.index') }}">Stasiun</a>
                         <a class="nav-link" href="{{ route('airport.index') }}">Bandara</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePelayanan" aria-expanded="false" aria-controls="collapsePelayanan">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#collapsePelayanan" aria-expanded="false" aria-controls="collapsePelayanan">
+                    <div class="sb-nav-link-icon"><i class="fas fa-handshake-angle"></i></div>
                     Pelayanan
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapsePelayanan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapsePelayanan" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('report.index') }}">Laporan</a>
                     </nav>
                 </div>
-                <div class="sb-sidenav-menu-heading">Interface</div>
+                {{-- <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Layouts
@@ -104,12 +114,12 @@
                 <a class="nav-link" href="tables.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Tables
-                </a>
+                </a>  --}}
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Login Sebagai:</div>
+            {{ Auth::user()->name ?? 'guest' }}
         </div>
     </nav>
 </div>

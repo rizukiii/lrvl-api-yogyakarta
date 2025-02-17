@@ -35,3 +35,28 @@ function previewImage(event) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
+
+document.addEventListener("DOMContentLoaded",function(){
+    // daftar menu dan rutenya
+    let menuItems = [
+        { name: "dashboard", url: "{{ route('dashboard') }}" },
+        { name: "news", url: "{{ route('news.index') }}" },
+    ]
+
+    // input pencarian
+    let searchInput = document.getElementById("navbarSearchInput");
+
+    // Event saat mengetik di search bar
+    searchInput.addEventListener("keyup", function(event){
+        if(event.key === "Enter"){
+            let query = searchInput.value.toLowerCase();
+            let foundItem = menuItems.find(item => item.name.toLowerCase().includes(query));
+
+            if(foundItem){
+                window.location.href = foundItem.url;
+            } else {
+                alert("Menu tidak di temukan!")
+            }
+        }
+    })
+})

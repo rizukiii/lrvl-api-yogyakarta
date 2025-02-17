@@ -15,6 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::latest()->get(); // Urutkan dari berita terbaru
+
         return view('backend.news.index', compact('news'));
     }
 
@@ -41,9 +42,10 @@ class NewsController extends Controller
             $news = new News();
             $news->title = $validatedData['title'];
             $news->description = $validatedData['description'];
+            $news->author = 'admin'; // Default author "admin"
 
             if ($request->hasFile('image')) {
-                $news->image = $request->file('image')->store('public/news');
+                $news->image = $request->file('image')->store('news','public');
             }
 
             $news->save();

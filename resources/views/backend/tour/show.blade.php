@@ -5,72 +5,84 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Detail Wisata: {{ $tour->title }}</h1>
+        <h1 class="mt-4">Detail Wisata</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('tour.index') }}">Wisata</a></li>
-            <li class="breadcrumb-item active">{{ $tour->title }}</li>
+            <li class="breadcrumb-item active">Detail</li>
         </ol>
-        @include('backend.partials.alert')
 
         <div class="card mb-4">
-            <div class="card-header bg-danger text-white">
+            <div class="card-header text-white">
                 <i class="fas fa-info-circle me-1"></i>
                 Detail Wisata
             </div>
             <div class="card-body">
-                <div class="row">
-                    <!-- Image Section -->
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <img src="{{ Storage::url($tour->image) }}" alt="{{ $tour->title }}" class="img-fluid rounded shadow-sm">
-                    </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Nama Wisata</th>
+                        <td>{{ $tour->title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Deskripsi</th>
+                        <td>{{ $tour->description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td>{{ $tour->address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jam Operasional</th>
+                        <td>{{ \Carbon\Carbon::parse($tour->open_at)->format('H:i') }} - {{ \Carbon\Carbon::parse($tour->closed_at)->format('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Harga</th>
+                        <td>Rp {{ number_format($tour->price, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telepon</th>
+                        <td>{{ $tour->telp ? $tour->telp : '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Instagram</th>
+                        <td>
+                            @if($tour->instagram)
+                                <a href="https://instagram.com/{{ $tour->instagram }}" target="_blank">{{ $tour->instagram }}</a>
+                            @else
+                                -
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Website</th>
+                        <td>
+                            @if($tour->website)
+                                <a href="{{ $tour->website }}" target="_blank">{{ $tour->website }}</a>
+                            @else
+                                -
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Koordinat</th>
+                        <td>Latitude: {{ $tour->latitude }}, Longitude: {{ $tour->longitude }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gambar</th>
+                        <td>
+                            @if($tour->image)
+                                <img src="{{ Storage::url($tour->image) }}" alt="Gambar Wisata"
+                                    class="img-fluid" style="max-width: 300px;">
+                            @else
+                                <span class="text-muted">Tidak ada gambar</span>
+                            @endif
+                        </td>
+                    </tr>
+                </table>
 
-                    <!-- Information Section -->
-                    <div class="col-md-6 col-lg-8">
-                        <h3 class="text-danger">{{ $tour->title }}</h3>
-                        <p><strong>Deskripsi:</strong></p>
-                        <p>{{ $tour->description }}</p>
-
-                        <div class="row">
-                            <!-- Address -->
-                            <div class="col-6">
-                                <p><strong>Alamat:</strong> {{ $tour->address }}</p>
-                            </div>
-                            <!-- Open and Close Times -->
-                            <div class="col-6">
-                                <p><strong>Jam Buka:</strong> {{ \Carbon\Carbon::parse($tour->open_at)->format('H:i') }}</p>
-                                <p><strong>Jam Tutup:</strong> {{ \Carbon\Carbon::parse($tour->closed_at)->format('H:i') }}</p>
-                            </div>
-                        </div>
-
-                        <p><strong>Harga:</strong> Rp {{ number_format($tour->price, 0, ',', '.') }}</p>
-
-                        <!-- Contact Information -->
-                        <div class="mt-3">
-                            <p><strong>Kontak:</strong></p>
-                            <ul class="list-unstyled">
-                                @if ($tour->telp)
-                                    <li><i class="fas fa-phone-alt"></i> <strong>Telepon:</strong> {{ $tour->telp }}</li>
-                                @endif
-                                @if ($tour->instagram)
-                                    <li><i class="fab fa-instagram"></i> <strong>Instagram:</strong> <a href="https://instagram.com/{{ $tour->instagram }}" target="_blank">{{ $tour->instagram }}</a></li>
-                                @endif
-                                @if ($tour->website)
-                                    <li><i class="fas fa-link"></i> <strong>Website:</strong> <a href="{{ $tour->website }}" target="_blank">{{ $tour->website }}</a></li>
-                                @endif
-                            </ul>
-                        </div>
-
-                        <!-- Coordinates -->
-                        <div class="mt-4">
-                            <p><strong>Koordinat:</strong></p>
-                            <p>Latitude: {{ $tour->latitude }} | Longitude: {{ $tour->longitude }}</p>
-                        </div>
-
-                        <!-- Back Button -->
-                        <div class="mt-4">
-                            <a href="{{ route('tour.index') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Wisata</a>
-                        </div>
-                    </div>
+                <div class="mt-4">
+                    <a href="{{ route('tour.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Wisata
+                    </a>
                 </div>
             </div>
         </div>

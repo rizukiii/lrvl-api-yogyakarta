@@ -14,77 +14,62 @@
 
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-eye me-1"></i>
+                <i class="fas fa-info-circle me-1"></i>
                 Detail Terminal
             </div>
             <div class="card-body">
-                <div class="row">
-                    <!-- Image Section -->
-                    <div class="col-md-6 col-lg-4 mb-3">
-                        <label for="image" class="form-label"><strong>Gambar</strong></label>
-                        <div>
-                            @if($terminal->image)
-                                <img src="{{ Storage::url($terminal->image) }}" alt="Terminal Image" class="img-fluid rounded shadow-sm" style="max-height: 250px;">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Nama Terminal</th>
+                        <td>{{ $terminal->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td>{{ $terminal->address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jam Operasional</th>
+                        <td>{{ $terminal->open_at }} - {{ $terminal->closed_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fasilitas</th>
+                        <td>{{ $terminal->facilities }}</td>
+                    </tr>
+                    <tr>
+                        <th>Telepon</th>
+                        <td>{{ $terminal->telp ? $terminal->telp : 'Tidak tersedia' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>
+                            @if($terminal->status == 'aktif')
+                                <span class="badge bg-success">Aktif</span>
+                            @elseif($terminal->status == 'dalam perbaikan')
+                                <span class="badge bg-warning text-dark">Dalam Perbaikan</span>
                             @else
-                                <p>No image uploaded.</p>
+                                <span class="badge bg-danger">Tutup Sementara</span>
                             @endif
-                        </div>
-                    </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Koordinat</th>
+                        <td>Latitude: {{ $terminal->latitude }}, Longitude: {{ $terminal->longitude }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gambar</th>
+                        <td>
+                            @if($terminal->image)
+                                <img src="{{ Storage::url($terminal->image) }}" alt="Gambar Terminal"
+                                    class="img-fluid" style="max-width: 300px;">
+                            @else
+                                <span class="text-muted">Tidak ada gambar</span>
+                            @endif
+                        </td>
+                    </tr>
+                </table>
 
-                    <!-- Info Section -->
-                    <div class="col-md-6 col-lg-8">
-                        <h3 class="text-danger">{{ $terminal->name }}</h3>
-
-                        <div class="mb-3">
-                            <label class="form-label"><strong>Alamat</strong></label>
-                            <p>{{ $terminal->address }}</p>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label"><strong>Fasilitas</strong></label>
-                            <p>{{ $terminal->facilities }}</p>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label"><strong>Jam Buka</strong></label>
-                                <p>{{ $terminal->open_at }}</p>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label"><strong>Jam Tutup</strong></label>
-                                <p>{{ $terminal->closed_at }}</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label"><strong>Telepon</strong></label>
-                                <p>{{ $terminal->telp ? $terminal->telp : 'Tidak tersedia' }}</p>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label"><strong>Status</strong></label>
-                                <p>{{ $terminal->status ? 'Aktif' : 'Tidak Aktif' }}</p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-label"><strong>Latitude</strong></label>
-                                <p>{{ $terminal->latitude }}</p>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label"><strong>Longitude</strong></label>
-                                <p>{{ $terminal->longitude }}</p>
-                            </div>
-                        </div>
-
-                        <!-- Back Button -->
-                        <div class="mt-4 d-flex justify-content-end">
-                            <a href="{{ route('terminal.index') }}" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Terminal
-                            </a>
-                        </div>
-                    </div>
+                <div class="mt-4">
+                    <a href="{{ route('terminal.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
         </div>
