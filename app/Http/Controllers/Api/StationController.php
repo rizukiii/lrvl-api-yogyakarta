@@ -13,22 +13,30 @@ class StationController extends Controller
 {
     public function index()
     {
-        $station = Station::latest()->get();
+        try {
+            $station = Station::latest()->get();
 
-        $station->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $station->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil didapatkan!", $station);
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Stasiun berhasil didapatkan!", $station);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
+        }
     }
 
     public function show($id)
     {
-        $station = Station::findOrFail($id);
+        try {
+            $station = Station::findOrFail($id);
 
-        $station->image = url('/') . Storage::url($station->image);
+            $station->image = url('/') . Storage::url($station->image);
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasildi dapatkan!", $station);
+            return new JsonResponses(Response::HTTP_OK, "Satu Data Stasiun berhasil didapatkan!", $station);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
+        }
     }
 }

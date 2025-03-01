@@ -16,14 +16,18 @@ class AccommodationController extends Controller
      */
     public function fetchAll()
     {
-        $accommodations = Accommodation::all();
+        try {
+            $accommodations = Accommodation::all();
 
-        $accommodations->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $accommodations->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, 'Semua Data Akomodasi Berhasil Di Dapatkan!', $accommodations);
+            return new JsonResponses(Response::HTTP_OK, 'Semua Data Akomodasi Berhasil Di Dapatkan!', $accommodations);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     /**
@@ -31,10 +35,14 @@ class AccommodationController extends Controller
      */
     public function fetchSingle($id)
     {
-        $accommodation = Accommodation::findOrFail($id);
+        try {
+            $accommodation = Accommodation::findOrFail($id);
 
-        $accommodation->image = url('/') . Storage::url($accommodation->image);
+            $accommodation->image = url('/') . Storage::url($accommodation->image);
 
-        return new JsonResponses(Response::HTTP_OK, 'Satu Data Akomodasi Berhasil Di Dapatkan!', $accommodation);
+            return new JsonResponses(Response::HTTP_OK, 'Satu Data Akomodasi Berhasil Di Dapatkan!', $accommodation);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 }

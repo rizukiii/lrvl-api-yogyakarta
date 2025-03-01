@@ -15,29 +15,34 @@ class LoginController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //set validation
-        $validator = Validator::make($request->all(), [
-            'email'     => 'required',
-            'password'  => 'required'
-        ]);
+        try {
+            //set validation
+            $validator = Validator::make($request->all(), [
+                'email'     => 'required',
+                'password'  => 'required'
+            ]);
 
-        //if validation fails
-        if ($validator->fails()) {
-            return new JsonResponses(Response::HTTP_OK,"Validasi Login Gagal.",$validator->errors());
+            //if validation fails
+            if ($validator->fails()) {
+                return new JsonResponses(Response::HTTP_BAD_REQUEST, "Validasi Login Gagal.", $validator->errors());
+            }
+
+            //get credentials from request
+            $credentials = $request->only('email', 'password');
+
+            //if auth failed
+            if (!$token = auth()->guard('api')->attempt($credentials)) {
+                return new JsonResponses(Response::HTTP_BAD_REQUEST, "Email atau Password Anda salah", null);
+            }
+
+            //if auth success
+            return new JsonResponses(
+                Response::HTTP_OK,
+                'Berhasil Login!',
+                ['user' => auth()->guard('api')->user(), 'token' => $token]
+            );
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
         }
-
-        //get credentials from request
-        $credentials = $request->only('email', 'password');
-
-        //if auth failed
-        if(!$token = auth()->guard('api')->attempt($credentials)) {
-            return new JsonResponses(Response::HTTP_OK,"Email atau Password Anda salah",null);
-        }
-
-        //if auth success
-        return new JsonResponses(
-            Response::HTTP_OK,
-            'Berhasil Login!',
-            ['user' => auth()->guard('api')->user(), 'token' => $token]) ;
     }
 }

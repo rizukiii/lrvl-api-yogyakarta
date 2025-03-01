@@ -15,19 +15,19 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tours = Tour::latest()->get();
+        try {
+            $tours = Tour::latest()->get();
 
-        if ($tours->isEmpty()) {
-            return new JsonResponses(Response::HTTP_OK, "Tidak ada data wisata yang tersedia!", []);
+            // Transformasi data dengan memperbaiki URL gambar
+            $tours->transform(function ($item) {
+                $item->image = $item->image ? url('/') . Storage::url($item->image) : null;
+                return $item;
+            });
+
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Tour berhasil didapatkan!", $tours);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
         }
-
-        // Transformasi data dengan memperbaiki URL gambar
-        $tours->transform(function ($item) {
-            $item->image = $item->image ? url('/') . Storage::url($item->image) : null;
-            return $item;
-        });
-
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil didapatkan!", $tours);
     }
 
     /**
@@ -35,11 +35,15 @@ class TourController extends Controller
      */
     public function show($id)
     {
-        $tour = Tour::findOrFail($id);
+        try {
+            $tour = Tour::findOrFail($id);
 
-        // Periksa jika gambar ada, jika tidak, biarkan null
-        $tour->image = $tour->image ? url('/') . Storage::url($tour->image) : null;
+            // Periksa jika gambar ada, jika tidak, biarkan null
+            $tour->image = $tour->image ? url('/') . Storage::url($tour->image) : null;
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasil didapatkan!", $tour);
+            return new JsonResponses(Response::HTTP_OK, "Satu Data Tour berhasil didapatkan!", $tour);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
+        }
     }
 }

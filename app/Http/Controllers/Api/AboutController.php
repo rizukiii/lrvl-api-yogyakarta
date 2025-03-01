@@ -13,8 +13,12 @@ class AboutController extends Controller
 {
     public function fetchAll()
     {
-        $abouts = About::all();
+        try {
+            $abouts = About::all();
 
-        return new JsonResponses(Response::HTTP_OK, 'Semua Data Akomodasi Berhasil Di Dapatkan!', $abouts);
+            return new JsonResponses(Response::HTTP_OK, 'Semua Data About Berhasil Di Dapatkan!', $abouts);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 }

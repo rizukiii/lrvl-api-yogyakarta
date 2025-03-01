@@ -13,22 +13,30 @@ class AirportController extends Controller
 {
     public function index()
     {
-        $airport = Airport::latest()->get();
+        try {
+            $airport = Airport::latest()->get();
 
-        $airport->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $airport->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil didapatkan!", $airport);
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Airport Berhasil didapatkan!", $airport);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     public function show($id)
     {
-        $airport = Airport::findOrFail($id);
+        try {
+            $airport = Airport::findOrFail($id);
 
-        $airport->image = url('/') . Storage::url($airport->image);
+            $airport->image = url('/') . Storage::url($airport->image);
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasildi dapatkan!", $airport);
+            return new JsonResponses(Response::HTTP_OK, "Satu Data Berhasil didapatkan!", $airport);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 }

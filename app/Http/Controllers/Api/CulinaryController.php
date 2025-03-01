@@ -12,22 +12,30 @@ class CulinaryController extends Controller
 {
     public function index()
     {
-        $culinaries = Culinary::latest()->get();
+        try {
+            $culinaries = Culinary::latest()->get();
 
-        $culinaries->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $culinaries->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil didapatkan!", $culinaries);
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Kuliner Berhasil didapatkan!", $culinaries);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     public function show($id)
     {
-        $culinaries = Culinary::findOrFail($id);
+        try {
+            $culinaries = Culinary::findOrFail($id);
 
-        $culinaries->image = url('/') . Storage::url($culinaries->image);
+            $culinaries->image = url('/') . Storage::url($culinaries->image);
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasildi dapatkan!", $culinaries);
+            return new JsonResponses(Response::HTTP_OK, "Satu Data Kuliner Berhasil didapatkan!", $culinaries);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 }

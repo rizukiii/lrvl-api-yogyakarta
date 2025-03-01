@@ -17,14 +17,18 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::latest()->get();
+        try {
+            $news = News::latest()->get();
 
-        $news->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $news->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil di dapatkan!", $news);
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Berita Berhasil di dapatkan!", $news);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     /**
@@ -58,11 +62,15 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::find($id);
+        try {
+            $news = News::find($id);
 
-        $news->image = url('/') . Storage::url($news->image);
+            $news->image = url('/') . Storage::url($news->image);
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasil di dapatkan!", $news);
+            return new JsonResponses(Response::HTTP_OK, "Satu data berhasil di dapatkan!", $news);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     /**
@@ -70,35 +78,39 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi input
-        Validator::make($request->all(), [
-            'title'       => 'required|string',
-            'description' => 'required|string',
-            'image'       => 'nullable|image',
-            'author'      => 'nullable|string'
-        ]);
+        try {
+            // Validasi input
+            Validator::make($request->all(), [
+                'title'       => 'required|string',
+                'description' => 'required|string',
+                'image'       => 'nullable|image',
+                'author'      => 'nullable|string'
+            ]);
 
-        // Cari berita berdasarkan ID
-        $news = News::find($id);
+            // Cari berita berdasarkan ID
+            $news = News::find($id);
 
-        // Update data berita
-        $news->title = $request->title;
-        $news->description = $request->description;
-        $news->author = $request->author ?? $news->author; // Jika author tidak dikirim, gunakan yang lama
+            // Update data berita
+            $news->title = $request->title;
+            $news->description = $request->description;
+            $news->author = $request->author ?? $news->author; // Jika author tidak dikirim, gunakan yang lama
 
-        // Jika ada file gambar baru
-        if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
-            if ($news->image && Storage::exists($news->image)) {
-                Storage::delete($news->image);
+            // Jika ada file gambar baru
+            if ($request->hasFile('image')) {
+                // Hapus gambar lama jika ada
+                if ($news->image && Storage::exists($news->image)) {
+                    Storage::delete($news->image);
+                }
+                // Simpan gambar baru
+                $news->image = $request->file('image')->store('news', 'public');
             }
-            // Simpan gambar baru
-            $news->image = $request->file('image')->store('news', 'public');
+
+            $news->save();
+
+            return new JsonResponses(Response::HTTP_OK, "Data Berita berhasil di perbarui!", $news);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
         }
-
-        $news->save();
-
-        return new JsonResponses(Response::HTTP_OK, "Data berhasil di perbarui!", $news);
     }
 
 
@@ -107,14 +119,18 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::find($id);
+        try {
+            $news = News::find($id);
 
-        if ($news->image && Storage::exists($news->image)) {
-            Storage::delete($news->image);
+            if ($news->image && Storage::exists($news->image)) {
+                Storage::delete($news->image);
+            }
+
+            $news->delete();
+
+            return new JsonResponses(Response::HTTP_OK, "Data Berita Berhasil dihapus!", null);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
         }
-
-        $news->delete();
-
-        return new JsonResponses(Response::HTTP_OK,"Data berhasil dihapus!",null);
     }
 }

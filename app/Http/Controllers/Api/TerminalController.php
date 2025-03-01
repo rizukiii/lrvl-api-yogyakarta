@@ -13,22 +13,30 @@ class TerminalController extends Controller
 {
     public function index()
     {
-        $terminal = Terminal::latest()->get();
+        try {
+            $terminal = Terminal::latest()->get();
 
-        $terminal->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $terminal->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, "Semua data berhasil didapatkan!", $terminal);
+            return new JsonResponses(Response::HTTP_OK, "Semua Data Terminal berhasil didapatkan!", $terminal);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
+        }
     }
 
     public function show($id)
     {
-        $terminal = Terminal::findOrFail($id);
+        try {
+            $terminal = Terminal::findOrFail($id);
 
-        $terminal->image = url('/') . Storage::url($terminal->image);
+            $terminal->image = url('/') . Storage::url($terminal->image);
 
-        return new JsonResponses(Response::HTTP_OK, "Satu data berhasildi dapatkan!", $terminal);
+            return new JsonResponses(Response::HTTP_OK, "Satu Data Terminal berhasil didapatkan!", $terminal);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, "Ada kesalahan!", $e->getMessage());
+        }
     }
 }

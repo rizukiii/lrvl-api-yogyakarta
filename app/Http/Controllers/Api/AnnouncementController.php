@@ -13,22 +13,30 @@ class AnnouncementController extends Controller
 {
     public function fetchAll()
     {
-        $announcements = Announcement::all();
+        try {
+            $announcements = Announcement::all();
 
-        $announcements->transform(function ($item) {
-            $item->image = url('/') . Storage::url($item->image);
-            return $item;
-        });
+            $announcements->transform(function ($item) {
+                $item->image = url('/') . Storage::url($item->image);
+                return $item;
+            });
 
-        return new JsonResponses(Response::HTTP_OK, 'Semua Data Berita Berhasil Di Dapatkan!', $announcements);
+            return new JsonResponses(Response::HTTP_OK, 'Semua Data Pengumuman Berhasil Di Dapatkan!', $announcements);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 
     public function fetchSingle($id)
     {
-        $announcement = Announcement::findOrFail($id);
+        try {
+            $announcement = Announcement::findOrFail($id);
 
-        $announcement->image = url('/') . Storage::url($announcement->image);
+            $announcement->image = url('/') . Storage::url($announcement->image);
 
-        return new JsonResponses(Response::HTTP_OK, 'Satu Data Berita Berhasil Di Dapatkan!', $announcement);
+            return new JsonResponses(Response::HTTP_OK, 'Satu Data Pengumuman Berhasil Di Dapatkan!', $announcement);
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
+        }
     }
 }

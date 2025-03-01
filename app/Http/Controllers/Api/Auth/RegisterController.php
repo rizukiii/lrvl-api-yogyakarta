@@ -17,32 +17,36 @@ class RegisterController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //set validation
-        $validator = Validator::make($request->all(), [
-            'name'      => 'required',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|confirmed'
-        ]);
+        try {
+            //set validation
+            $validator = Validator::make($request->all(), [
+                'name'      => 'required',
+                'email'     => 'required|email|unique:users',
+                'password'  => 'required|confirmed'
+            ]);
 
-        //if validation fails
-        if ($validator->fails()) {
-            return new JsonResponses(Response::HTTP_OK,"Validasi Register Gagal.",$validator->errors());
-        }
+            //if validation fails
+            if ($validator->fails()) {
+                return new JsonResponses(Response::HTTP_OK, "Validasi Register Gagal.", $validator->errors());
+            }
 
-        //create user
-        $user = User::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => bcrypt($request->password),
-            'role' => 'user'
-        ]);
+            //create user
+            $user = User::create([
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'password'  => bcrypt($request->password),
+                'role' => 'user'
+            ]);
 
-        // Kirim email verifikasi
-        event(new Registered($user));
+            // Kirim email verifikasi
+            event(new Registered($user));
 
-        //return response JSON user is created
-        if ($user) {
-            return new JsonResponses(Response::HTTP_CREATED,"User registered successfully. Please verify your email.",$user);
+            //return response JSON user is created
+            if ($user) {
+                return new JsonResponses(Response::HTTP_CREATED, "User registered successfully. Please verify your email.", $user);
+            }
+        } catch (\Exception $e) {
+            return new JsonResponses(Response::HTTP_INTERNAL_SERVER_ERROR, 'Ada kesalahan!', $e->getMessage());
         }
     }
 }
